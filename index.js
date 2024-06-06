@@ -36,7 +36,7 @@ app.use('/user', userRoutes);
 app.use('/video', videoRoutes);
 app.use('/comment', commentsRoutes);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server Running on the PORT ${PORT}`);
 });
