@@ -14,7 +14,7 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-    origin: 'http://localhost:3000', // allow requests from this origin
+    origin: 'https://66615757239cf752cfd94b8f--hilarious-daffodil-379d3e.netlify.app', // allow requests from this origin
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204
