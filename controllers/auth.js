@@ -6,6 +6,7 @@ export const login = async (req, res) => {
   try {
     console.log("in try part");
     const existingUser = await users.findOne({ email });
+    console.log(email);
 
     if (!existingUser) {
       try {

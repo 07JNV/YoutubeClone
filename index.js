@@ -7,6 +7,7 @@ import userRoutes from './routes/user.js';
 import videoRoutes from './routes/video.js';
 import commentsRoutes from './routes/comments.js';
 import path from 'path';
+// import User from "./models/auth.js"
 
 dotenv.config();
 
@@ -29,6 +30,22 @@ app.use('/uploads', express.static(path.join('uploads')));
 app.get('/', (req, res) => {
     res.send("hello");
 });
+
+
+// const updateUsers = async () => {
+//     try {
+//       await User.updateMany(
+//         { points: { $exists: false } }, 
+//         { $set: { points: 0 } } 
+//       );
+//       console.log('Users updated successfully');
+//       mongoose.disconnect();
+//     } catch (error) {
+//       console.error('Error updating users:', error);
+//       // mongoose.disconnect();
+//     }
+//   }
+//   updateUsers();
 
 app.use(bodyParser.json());
 
