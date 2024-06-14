@@ -14,8 +14,22 @@ dotenv.config();
 const app = express();
 
 // CORS configuration
+// const corsOptions = {
+//     origin: true, // allow requests from any origin
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true,
+//     optionsSuccessStatus: 204
+// };
+
 const corsOptions = {
-    origin: true, // allow requests from any origin
+    origin: function (origin, callback) {
+        const allowedOrigin = 'https://youtubefrontjnv.netlify.app';
+        if (origin === allowedOrigin || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204
@@ -32,20 +46,7 @@ app.get('/', (req, res) => {
 });
 
 
-// const updateUsers = async () => {
-//     try {
-//       await User.updateMany(
-//         { points: { $exists: false } }, 
-//         { $set: { points: 0 } } 
-//       );
-//       console.log('Users updated successfully');
-//       mongoose.disconnect();
-//     } catch (error) {
-//       console.error('Error updating users:', error);
-//       // mongoose.disconnect();
-//     }
-//   }
-//   updateUsers();
+
 
 app.use(bodyParser.json());
 
@@ -65,3 +66,5 @@ mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true }).th
 }).catch((error) => {
     console.log(error);
 });
+
+
