@@ -12,14 +12,15 @@ import path from "path";
 
 dotenv.config();
 
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
-      "http://localhost:3000", // Add your frontend development server URL here
-      "https://youtubefrontjnv.netlify.app",
-      "https://youtubeclonefront--youtubefrontjnv.netlify.app",
+      "http://localhost:3000", 
+      "https://youtubeclonefront--youtubeclonejnv.netlify.app"
+      
     ],
     methods: ["GET", "POST"],
     credentials: true,
@@ -30,9 +31,9 @@ const io = new Server(server, {
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
-      "http://localhost:3000", // Add your frontend development server URL here
-      "https://youtubefrontjnv.netlify.app",
-      "https://youtubeclonefront--youtubefrontjnv.netlify.app",
+      "http://localhost:3000",
+      "https://youtubeclonefront--youtubeclonejnv.netlify.app"
+      
     ];
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
