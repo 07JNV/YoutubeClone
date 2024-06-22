@@ -103,6 +103,27 @@ io.on('connection', socket => {
     }
   });
 
+  socket.on('screenShare', (data) => {
+    const { to, signalData } = data;
+    const targetSocketId = users[to]; 
+    
+    console.log(targetSocketId)
+    if (targetSocketId) {
+      io.to(targetSocketId).emit('screenshare', {
+        signal: signalData,
+        from: data.from,
+      });
+    }
+  });
+  
+
+  socket.on('screenRecieved', (data) => {
+    const targetSocketId = users[data.to]; 
+    if (targetSocketId) {
+      io.to(targetSocketId).emit('screenrecieved', data.signal);
+    }
+  });
+
   socket.on('disconnect', () => {
     for (let email in users) {
       if (users[email] === socket.id) {
